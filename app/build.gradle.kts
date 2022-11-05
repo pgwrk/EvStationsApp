@@ -57,6 +57,7 @@ dependencies {
     implementation(Dependencies.Compose.ui)
     implementation(Dependencies.Compose.material)
     implementation(Dependencies.Compose.tooling)
+    implementation(Dependencies.Compose.navigation)
 
     // Lifecycle
     implementation(Dependencies.Lifecycle.lifecycleKtx)

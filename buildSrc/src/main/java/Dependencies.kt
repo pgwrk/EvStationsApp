@@ -10,6 +10,7 @@ object Dependencies {
         const val ui = "androidx.compose.ui:ui:$version"
         const val material = "androidx.compose.material:material:$version"
         const val tooling = "androidx.compose.ui:ui-tooling-preview:$version"
+        const val navigation = "androidx.navigation:navigation-compose:2.5.3"
     }
 
     object Lifecycle {
