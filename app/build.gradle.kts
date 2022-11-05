@@ -56,7 +56,10 @@ dependencies {
     // Compose
     implementation(Dependencies.Compose.ui)
     implementation(Dependencies.Compose.material)
+    implementation(Dependencies.Compose.toolingPreview)
     implementation(Dependencies.Compose.tooling)
+    implementation(Dependencies.Compose.constraintLayout)
+    implementation(Dependencies.Compose.runtime)
     implementation(Dependencies.Compose.navigation)
 
     // Lifecycle
