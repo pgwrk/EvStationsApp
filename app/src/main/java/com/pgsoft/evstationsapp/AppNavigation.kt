@@ -1,5 +1,6 @@
 package com.pgsoft.evstationsapp
 
+import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
@@ -26,9 +27,14 @@ fun AppNavigation() {
             }
         )
 
-        loginScreen {
-            navController.navigateToStations(navPopUpOptions(loginRoute))
-        }
+        loginScreen(
+            onLoggedIn = {
+                navController.navigateToStations(navPopUpOptions(loginRoute))
+            },
+            onClose = {
+                (navController.context as Activity).finish()
+            }
+        )
 
         stationsScreen()
     }

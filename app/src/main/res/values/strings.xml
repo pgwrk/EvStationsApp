@@ -3,4 +3,5 @@
 
     <!-- Login feature -->
     <string name="login_button">Log In</string>
+    <string name="login_title">Log In and Charge!</string>
 </resources>
