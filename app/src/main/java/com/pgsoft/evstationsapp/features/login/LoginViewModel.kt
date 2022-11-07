@@ -20,9 +20,14 @@ class LoginViewModel @Inject constructor(): ViewModel() {
 
         viewModelScope.launch {
             setState(LoginUiState.Default(isLoading = true))
-            delay(5000)
-            setState(LoginUiState.LoggedIn)
+            delay(3000)
+            setState(LoginUiState.Default(error = "Something went wrong"))
         }
+    }
+
+    fun clearError() {
+        val newState = (_uiState.value as LoginUiState.Default).copy(error = null)
+        setState(newState)
     }
 
     private fun setState(newState: LoginUiState) {

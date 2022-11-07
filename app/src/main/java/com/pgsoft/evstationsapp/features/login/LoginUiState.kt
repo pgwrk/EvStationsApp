@@ -2,7 +2,7 @@ package com.pgsoft.evstationsapp.features.login
 
 sealed class LoginUiState {
 
-    class Default(
+    data class Default(
         val isLoading: Boolean = false,
         val error: String? = null
     ): LoginUiState()

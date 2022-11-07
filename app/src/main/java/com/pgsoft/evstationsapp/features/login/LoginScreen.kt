@@ -3,6 +3,7 @@ package com.pgsoft.evstationsapp.features.login
 import android.annotation.SuppressLint
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.view.ViewTreeObserver
+import android.widget.Toast
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -15,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -48,11 +50,10 @@ fun LoginRoute(
         is LoginUiState.Default -> LoginScreen(
             uiState = uiState as LoginUiState.Default,
             onClose = onClose,
-            onLoginTapped = {
-                viewModel.login(userName, password)
-            },
             onUserNameChanged = { newUserName -> userName = newUserName },
-            onPasswordChanged = { newPassword -> password = newPassword }
+            onPasswordChanged = { newPassword -> password = newPassword },
+            onErrorShown = { viewModel.clearError() },
+            onLoginTapped = { viewModel.login(userName, password) }
         )
     }
 }
@@ -63,6 +64,7 @@ fun LoginScreen(
     onClose: () -> Unit,
     onUserNameChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
+    onErrorShown: () -> Unit,
     onLoginTapped: () -> Unit
 ) {
     val imageVisible = remember { mutableStateOf( true ) }
@@ -122,6 +124,12 @@ fun LoginScreen(
                     height = Dimension.value(56.dp)
                 }
         )
+    }
+
+    uiState.error?.let {
+        val context = LocalContext.current
+        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        onErrorShown()
     }
 }
 
@@ -283,5 +291,5 @@ private fun observerKeyboardVisibility(onVisibilityChanged: (shown: Boolean) -> 
 @Preview(device = Devices.PIXEL_3, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun LoginScreenPreview() = EvStationsAppTheme {
-    LoginScreen(uiState = LoginUiState.Default(), {}, {}, {}, {})
+    LoginScreen(uiState = LoginUiState.Default(), {},{}, {}, {}, {})
 }
