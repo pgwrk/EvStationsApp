@@ -28,6 +28,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pgsoft.evstationsapp.R
 import com.pgsoft.evstationsapp.features.login.evedittext.EvEditText
 import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
@@ -35,19 +36,33 @@ import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 @Composable
 fun LoginRoute(
     onLoggedIn: () -> Unit,
-    onClose: () -> Unit
+    onClose: () -> Unit,
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
-    LoginScreen(
-        onLoggedIn = onLoggedIn,
-        onClose = onClose,
-        onLoginTapped = {}
-    )
+    val uiState by viewModel.uiState.collectAsState()
+    var userName = remember { "" }
+    var password = remember { "" }
+
+    when (uiState) {
+        LoginUiState.LoggedIn -> onLoggedIn()
+        is LoginUiState.Default -> LoginScreen(
+            uiState = uiState as LoginUiState.Default,
+            onClose = onClose,
+            onLoginTapped = {
+                viewModel.login(userName, password)
+            },
+            onUserNameChanged = { newUserName -> userName = newUserName },
+            onPasswordChanged = { newPassword -> password = newPassword }
+        )
+    }
 }
 
 @Composable
 fun LoginScreen(
-    onLoggedIn: () -> Unit,
+    uiState: LoginUiState.Default,
     onClose: () -> Unit,
+    onUserNameChanged: (String) -> Unit,
+    onPasswordChanged: (String) -> Unit,
     onLoginTapped: () -> Unit
 ) {
     val imageVisible = remember { mutableStateOf( true ) }
@@ -92,11 +107,13 @@ fun LoginScreen(
             modifier = Modifier.constrainAs(loginModule) {
                 top.linkTo(header.bottom)
                 bottom.linkTo(loginButton.top)
-            }
+            },
+            onUserNameChanged = onUserNameChanged,
+            onPasswordChanged = onPasswordChanged
         )
 
         LoginButton(
-            showProgress = false,
+            showProgress = uiState.isLoading,
             onClick = onLoginTapped,
             modifier = Modifier
                 .fillMaxWidth()
@@ -151,7 +168,11 @@ private fun Header(
 }
 
 @Composable
-private fun LoginModule(modifier: Modifier) {
+private fun LoginModule(
+    modifier: Modifier,
+    onUserNameChanged: (String) -> Unit,
+    onPasswordChanged: (String) -> Unit,
+) {
     Column(
         modifier = modifier
             .padding(horizontal = 32.dp)
@@ -162,14 +183,14 @@ private fun LoginModule(modifier: Modifier) {
             label = stringResource(id = R.string.login_username),
             imeAction = ImeAction.Next,
             keyboardType = KeyboardType.Email,
-            {})
+            { onUserNameChanged(it) })
 
         EvEditText(
             iconId = R.drawable.ic_lock,
             label = stringResource(id = R.string.login_password),
             imeAction = ImeAction.Done,
             keyboardType = KeyboardType.Password,
-            {})
+            { onPasswordChanged(it) })
 
         Row(
             modifier = Modifier
@@ -262,5 +283,5 @@ private fun observerKeyboardVisibility(onVisibilityChanged: (shown: Boolean) -> 
 @Preview(device = Devices.PIXEL_3, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun LoginScreenPreview() = EvStationsAppTheme {
-    LoginScreen({}, {}, {})
+    LoginScreen(uiState = LoginUiState.Default(), {}, {}, {}, {})
 }

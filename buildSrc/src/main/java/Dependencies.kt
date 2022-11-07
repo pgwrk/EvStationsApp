@@ -27,6 +27,7 @@ object Dependencies {
 
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
+        const val navigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
     object Test {

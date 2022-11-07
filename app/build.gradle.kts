@@ -69,6 +69,7 @@ dependencies {
 
     // Hilt
     implementation(Dependencies.Hilt.android)
+    implementation(Dependencies.Hilt.navigation)
     kapt(Dependencies.Hilt.compiler)
 
     // Test
