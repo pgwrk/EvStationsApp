@@ -8,4 +8,5 @@
     <string name="login_password">Password</string>
     <string name="login_forgot_password">I Forgot!</string>
     <string name="login_register">Register and benefit</string>
+    <string name="login_credentials_invalid">User name or password is invalid</string>
 </resources>
