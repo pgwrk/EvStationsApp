@@ -25,11 +25,6 @@ class LoginViewModel @Inject constructor(): ViewModel() {
         }
     }
 
-    fun clearError() {
-        val newState = (_uiState.value as LoginUiState.Default).copy(error = null)
-        setState(newState)
-    }
-
     private fun setState(newState: LoginUiState) {
         _uiState.value = newState
     }

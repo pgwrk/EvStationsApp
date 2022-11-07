@@ -3,7 +3,6 @@ package com.pgsoft.evstationsapp.features.login
 import android.annotation.SuppressLint
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.view.ViewTreeObserver
-import android.widget.Toast
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -16,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,7 +50,6 @@ fun LoginRoute(
             onClose = onClose,
             onUserNameChanged = { newUserName -> userName = newUserName },
             onPasswordChanged = { newPassword -> password = newPassword },
-            onErrorShown = { viewModel.clearError() },
             onLoginTapped = { viewModel.login(userName, password) }
         )
     }
@@ -64,7 +61,6 @@ fun LoginScreen(
     onClose: () -> Unit,
     onUserNameChanged: (String) -> Unit,
     onPasswordChanged: (String) -> Unit,
-    onErrorShown: () -> Unit,
     onLoginTapped: () -> Unit
 ) {
     val imageVisible = remember { mutableStateOf( true ) }
@@ -85,7 +81,7 @@ fun LoginScreen(
             .fillMaxSize()
             .background(MaterialTheme.colors.background)
     ) {
-        val (header, image, loginModule, loginButton) = createRefs()
+        val (header, image, loginModule, loginButton, error) = createRefs()
 
         Header(
             modifier = Modifier.constrainAs(header) {},
@@ -114,6 +110,21 @@ fun LoginScreen(
             onPasswordChanged = onPasswordChanged
         )
 
+        uiState.error?.let {
+            Text(
+                text = it,
+                modifier = Modifier
+                    .constrainAs(error) {
+                        bottom.linkTo(loginButton.top, margin = 16.dp)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    },
+                color = MaterialTheme.colors.error,
+                style = MaterialTheme.typography.body1,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
         LoginButton(
             showProgress = uiState.isLoading,
             onClick = onLoginTapped,
@@ -124,12 +135,6 @@ fun LoginScreen(
                     height = Dimension.value(56.dp)
                 }
         )
-    }
-
-    uiState.error?.let {
-        val context = LocalContext.current
-        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        onErrorShown()
     }
 }
 
@@ -291,5 +296,5 @@ private fun observerKeyboardVisibility(onVisibilityChanged: (shown: Boolean) -> 
 @Preview(device = Devices.PIXEL_3, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun LoginScreenPreview() = EvStationsAppTheme {
-    LoginScreen(uiState = LoginUiState.Default(), {},{}, {}, {}, {})
+    LoginScreen(uiState = LoginUiState.Default(), {},{}, {}, {})
 }
