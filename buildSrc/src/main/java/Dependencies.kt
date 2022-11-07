@@ -13,7 +13,7 @@ object Dependencies {
         const val tooling = "androidx.compose.ui:ui-tooling:$version"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
         const val runtime = "androidx.compose.runtime:runtime:$version"
-
+        const val icons = "androidx.compose.material:material-icons-extended:$version"
         const val navigation = "androidx.navigation:navigation-compose:2.5.3"
     }
 

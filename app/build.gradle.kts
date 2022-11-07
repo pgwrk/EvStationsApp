@@ -60,6 +60,7 @@ dependencies {
     implementation(Dependencies.Compose.tooling)
     implementation(Dependencies.Compose.constraintLayout)
     implementation(Dependencies.Compose.runtime)
+    implementation(Dependencies.Compose.icons)
     implementation(Dependencies.Compose.navigation)
 
     // Lifecycle

@@ -4,4 +4,8 @@
     <!-- Login feature -->
     <string name="login_button">Log In</string>
     <string name="login_title">Log In and Charge!</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_forgot_password">I Forgot!</string>
+    <string name="login_register">Register and benefit</string>
 </resources>
