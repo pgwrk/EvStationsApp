@@ -23,9 +23,16 @@ android {
     }
 
     buildTypes {
+
         release {
+            buildConfigField("String", "BASE_API_URL", "\"https://apitest.virta.fi/v4/\"")
+
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+
+        debug {
+            buildConfigField("String", "BASE_API_URL", "\"https://apitest.virta.fi/v4/\"")
         }
     }
     compileOptions {
@@ -71,6 +78,12 @@ dependencies {
     implementation(Dependencies.Hilt.android)
     implementation(Dependencies.Hilt.navigation)
     kapt(Dependencies.Hilt.compiler)
+
+    // Retrofit
+    implementation(Dependencies.Retrofit.retrofit)
+    implementation(Dependencies.Retrofit.okHttp)
+    implementation(Dependencies.Retrofit.gsonConverter)
+    implementation(Dependencies.Retrofit.loggingInterceptor)
 
     // Test
     testImplementation(Dependencies.Test.jUnit)

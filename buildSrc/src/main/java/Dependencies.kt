@@ -30,6 +30,13 @@ object Dependencies {
         const val navigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
+    object Retrofit {
+        const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+        const val okHttp = "com.squareup.okhttp3:okhttp:4.10.0"
+        const val gsonConverter = "com.squareup.retrofit2:converter-gson:2.9.0"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.1"
+    }
+
     object Test {
         const val jUnit = "junit:junit:4.13.2"
         const val androidJUnit = "androidx.test.ext:junit:1.1.2"

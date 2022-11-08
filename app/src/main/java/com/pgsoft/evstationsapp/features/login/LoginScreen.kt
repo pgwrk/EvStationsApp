@@ -41,17 +41,17 @@ fun LoginRoute(
     viewModel: LoginViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    var userName = remember { "" }
-    var password = remember { "" }
+    val userName = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
 
     when (uiState) {
         LoginUiState.LoggedIn -> onLoggedIn()
         is LoginUiState.Default -> LoginScreen(
             uiState = uiState as LoginUiState.Default,
             onClose = onClose,
-            onUserNameChanged = { newUserName -> userName = newUserName },
-            onPasswordChanged = { newPassword -> password = newPassword },
-            onLoginTapped = { viewModel.login(userName, password) }
+            onUserNameChanged = { newUserName -> userName.value = newUserName },
+            onPasswordChanged = { newPassword -> password.value = newPassword },
+            onLoginTapped = { viewModel.login(userName.value, password.value) }
         )
     }
 }

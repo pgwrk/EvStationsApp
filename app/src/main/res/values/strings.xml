@@ -9,4 +9,5 @@
     <string name="login_forgot_password">I Forgot!</string>
     <string name="login_register">Register and benefit</string>
     <string name="login_credentials_invalid">User name or password is invalid</string>
+    <string name="login_common_error">Something went wrong. Please try latter.</string>
 </resources>
