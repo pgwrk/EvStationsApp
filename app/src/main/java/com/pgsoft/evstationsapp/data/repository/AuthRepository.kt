@@ -22,7 +22,7 @@ class AuthRepository @Inject constructor(
         }
     }
 
-    private fun getToken(): String? = localStore.getToken()
+    fun getToken(): String? = localStore.getToken()
 
     private fun saveToken(token: String?) {
         token?.let {
