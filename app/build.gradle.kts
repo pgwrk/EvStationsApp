@@ -84,6 +84,7 @@ dependencies {
     implementation(Dependencies.Retrofit.okHttp)
     implementation(Dependencies.Retrofit.gsonConverter)
     implementation(Dependencies.Retrofit.loggingInterceptor)
+    implementation(Dependencies.Retrofit.mockWebServer)
 
     // Test
     testImplementation(Dependencies.Test.jUnit)

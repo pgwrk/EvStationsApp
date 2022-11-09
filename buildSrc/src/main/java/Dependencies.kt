@@ -35,6 +35,7 @@ object Dependencies {
         const val okHttp = "com.squareup.okhttp3:okhttp:4.10.0"
         const val gsonConverter = "com.squareup.retrofit2:converter-gson:2.9.0"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.1"
+        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:4.10.0"
     }
 
     object Test {

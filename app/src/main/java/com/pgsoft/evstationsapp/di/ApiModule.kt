@@ -3,6 +3,7 @@ package com.pgsoft.evstationsapp.di
 import com.google.gson.GsonBuilder
 import com.pgsoft.evstationsapp.BuildConfig
 import com.pgsoft.evstationsapp.data.remote.auth.AuthApi
+import com.pgsoft.evstationsapp.data.remote.interceptors.StationApiMockInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +26,7 @@ object ApiModule {
             .addInterceptor(
                 HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) }
             )
+            .addInterceptor(StationApiMockInterceptor())
             .build()
 
         return Retrofit.Builder()
