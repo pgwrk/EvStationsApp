@@ -14,4 +14,7 @@
     <!-- Stations feature -->
     <string name="stations_loading">Stations list loading …</string>
     <string name="stations_retry">Retry</string>
+    <string name="stations_kw">kW</string>
+    <string name="stations_distance">%.2f km</string>
+    <string name="stations_address">%s, %s</string>
 </resources>
