@@ -3,7 +3,7 @@ package com.pgsoft.evstationsapp.features.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pgsoft.evstationsapp.R
-import com.pgsoft.evstationsapp.data.common.Text
+import com.pgsoft.evstationsapp.data.common.EvText
 import com.pgsoft.evstationsapp.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor(
         if (isLoadingNow()) return
 
         if (!CredentialsChecker(userName, password).isValid()) {
-            setState(LoginUiState.Default(error = Text.ResText(R.string.login_credentials_invalid)))
+            setState(LoginUiState.Default(error = EvText.ResText(R.string.login_credentials_invalid)))
         } else {
             viewModelScope.launch {
                 setState(LoginUiState.Default(isLoading = true))
@@ -32,9 +32,9 @@ class LoginViewModel @Inject constructor(
                     setState(LoginUiState.LoggedIn)
                 } else {
                     val errorDescription = response.exceptionOrNull()?.message?.let {
-                        Text.PlainText(it)
+                        EvText.PlainText(it)
                     }  ?: run {
-                        Text.ResText(R.string.login_common_error)
+                        EvText.ResText(R.string.login_common_error)
                     }
                     setState(LoginUiState.Default(error = errorDescription))
                 }
