@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.pgsoft.evstationsapp.R
 import com.pgsoft.evstationsapp.data.common.EvText
 import com.pgsoft.evstationsapp.data.repository.AuthRepository
+import com.pgsoft.evstationsapp.extension.asEvTextOnError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,12 +32,7 @@ class LoginViewModel @Inject constructor(
                 if (response.isSuccess) {
                     setState(LoginUiState.LoggedIn)
                 } else {
-                    val errorDescription = response.exceptionOrNull()?.message?.let {
-                        EvText.PlainText(it)
-                    }  ?: run {
-                        EvText.ResText(R.string.login_common_error)
-                    }
-                    setState(LoginUiState.Default(error = errorDescription))
+                    setState(LoginUiState.Default(error = response.asEvTextOnError(R.string.login_common_error)))
                 }
             }
         }

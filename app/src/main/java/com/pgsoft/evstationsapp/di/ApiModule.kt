@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.pgsoft.evstationsapp.BuildConfig
 import com.pgsoft.evstationsapp.data.remote.auth.AuthApi
 import com.pgsoft.evstationsapp.data.remote.interceptors.StationApiMockInterceptor
+import com.pgsoft.evstationsapp.data.remote.station.StationsApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,4 +40,8 @@ object ApiModule {
     @Provides
     @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideStationsApi(retrofit: Retrofit): StationsApi = retrofit.create(StationsApi::class.java)
 }

@@ -5,8 +5,11 @@ import com.pgsoft.evstationsapp.data.remote.station.StationsApi
 import com.pgsoft.evstationsapp.data.remote.station.toDomain
 import com.pgsoft.evstationsapp.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class StationsRepository(
+@Singleton
+class StationsRepository @Inject constructor(
     @IoDispatcher ioDispatcher: CoroutineDispatcher,
     private val stationsApi: StationsApi
 ): BaseRepository(ioDispatcher) {
