@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pgsoft.evstationsapp.R
@@ -34,14 +35,17 @@ fun ErrorScreen(
                     .align(Alignment.CenterHorizontally)
                     .padding(horizontal = 32.dp),
                 color = MaterialTheme.colors.error,
-                style = MaterialTheme.typography.subtitle1
+                style = MaterialTheme.typography.subtitle1,
+                textAlign = TextAlign.Center
             )
 
             TextButton(
                 onClick = onRetry,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 16.dp)
             ) {
-                Text(text = stringResource(id = R.string.stations_retry))
+                Text(text = stringResource(id = R.string.stations_retry_button))
             }
         }
     }

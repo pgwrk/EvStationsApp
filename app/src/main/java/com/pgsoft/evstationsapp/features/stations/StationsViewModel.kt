@@ -37,10 +37,14 @@ class StationsViewModel @Inject constructor(
                 setState(StationsUiState.Error(description = response.asEvTextOnError(R.string.login_common_error)))
             } else {
                 val stations = response.getOrNull()?.let { stations ->
-                    val curPosition = locationDataSource.getLocation()
+                    val userLocation = locationDataSource.getLocation()
+                    val mapper = StationToUiStationMapper()
+
                     stations
-                        .map { it.toUiStation(curPosition, showDistanceOption, showConnectorsOption) }
-                        .sortedBy { it.distanceKm }
+                        .sortedBy {
+                            userLocation.distanceTo(it.location)
+                        }
+                        .map { mapper.map(it, userLocation, showDistanceOption, showConnectorsOption) }
                 } ?: run {
                     listOf()
                 }

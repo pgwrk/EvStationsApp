@@ -262,7 +262,7 @@ private fun LoginButton(
 
             if (showProgress) {
                 CircularProgressIndicator(
-                    color = Color.DarkGray,
+                    color = MaterialTheme.colors.primary,
                     strokeWidth = 2.dp,
                     modifier = Modifier
                         .padding(start = 16.dp)

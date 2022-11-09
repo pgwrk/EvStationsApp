@@ -5,29 +5,52 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import  androidx.compose.ui.Modifier
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.pgsoft.evstationsapp.features.stations.view.ContentScreen
+import com.pgsoft.evstationsapp.features.stations.view.ErrorScreen
+import com.pgsoft.evstationsapp.features.stations.view.LoadingScreen
 import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 
 @Composable
-fun StationsRoute() {
-    StationsScreen()
+fun StationsRoute(viewModel: StationsViewModel = hiltViewModel()) {
+
+    val uiState by viewModel.uiState.collectAsState()
+
+    StationsScreen(
+        uiState = uiState,
+        onRetry = { viewModel.load() }
+    )
 }
 
 @Composable
-fun StationsScreen() {
+fun StationsScreen(
+    uiState: StationsUiState,
+    onRetry: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colors.background)
     ) {
-        Text(
-            modifier = Modifier.align(Alignment.Center),
-            text = "Stations list screen")
+        when (uiState) {
+            StationsUiState.Loading -> LoadingScreen()
+            is StationsUiState.Error ->
+                ErrorScreen(
+                    description = uiState.description,
+                    onRetry = onRetry
+                )
+            is StationsUiState.Content ->
+                ContentScreen(
+                    stations = uiState.stations,
+                    onRetry = onRetry
+                )
+        }
     }
 }
 
@@ -35,5 +58,4 @@ fun StationsScreen() {
 @Preview(device = Devices.PIXEL_3, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun StationsScreenPreview() = EvStationsAppTheme {
-    StationsScreen()
 }

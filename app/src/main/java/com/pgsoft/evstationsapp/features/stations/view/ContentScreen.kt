@@ -12,35 +12,86 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.pgsoft.evstationsapp.R
+import com.pgsoft.evstationsapp.data.common.EvText
 import com.pgsoft.evstationsapp.features.stations.UiStation
 import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 
 @Composable
 fun ContentScreen(
     stations: List<UiStation>,
-    modifier: Modifier
+    onRetry: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
-            modifier = modifier
+        if (stations.isEmpty()) {
+//            Text(
+//                text = stringResource(id = R.string.stations_no_stations),
+//                modifier = Modifier.align(Alignment.Center),
+//                style = MaterialTheme.typography.body1,
+//                fontWeight = FontWeight.Bold,
+//                color = MaterialTheme.colors.onBackground.copy(alpha50),
+//            )
+            ContentScreenEmpty(modifier = Modifier, onRetry = onRetry)
+        } else {
+            ContentScreenNotEmpty(stations = stations)
+        }
+    }
+}
+
+@Composable
+private fun BoxScope.ContentScreenEmpty(
+    modifier:  Modifier,
+    onRetry: () -> Unit
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .align(Alignment.Center)
+    ) {
+        Text(
+            text = stringResource(id = R.string.stations_no_stations),
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(horizontal = 32.dp),
+            color = MaterialTheme.colors.onBackground.copy(alpha50),
+            style = MaterialTheme.typography.subtitle1,
+            textAlign = TextAlign.Center
+        )
+
+        TextButton(
+            onClick = onRetry,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 16.dp)
         ) {
-            itemsIndexed(
-                items = stations,
-                key = { _, item -> item.id }
-            ) { index, station ->
-                StationView(station)
-                if (index != stations.lastIndex) {
-                    Divider()
-                }
+            Text(text = stringResource(id = R.string.stations_retry_button))
+        }
+    }
+}
+
+@Composable
+private fun ContentScreenNotEmpty(
+    stations: List<UiStation>,
+) {
+    LazyColumn(modifier = Modifier.fillMaxSize()){
+        itemsIndexed(
+            items = stations,
+            key = { _, item -> item.id }
+        ) { index, station ->
+            StationView(station)
+            if (index != stations.lastIndex) {
+                Divider()
             }
         }
     }
@@ -74,11 +125,7 @@ private fun StationView(station: UiStation) {
             )
 
             Text(
-                text = stringResource(
-                    id = R.string.stations_address,
-                    station.address,
-                    station.city
-                ),
+                text = station.fullAddress.resolve(LocalContext.current),
                 modifier = Modifier.constrainAs(address) {
                     top.linkTo(name.bottom)
                     start.linkTo(name.start)
@@ -91,9 +138,9 @@ private fun StationView(station: UiStation) {
                 overflow = TextOverflow.Ellipsis
             )
 
-            station.distanceKm?.let {
+            station.distance?.let {
                 Distance(
-                    distance = station.distanceKm,
+                    distance = station.distance.resolve(LocalContext.current),
                     modifier = Modifier.constrainAs(distance) {
                         top.linkTo(parent.top)
                         end.linkTo(parent.end)
@@ -116,7 +163,7 @@ private fun StationView(station: UiStation) {
 
 @Composable
 private fun Distance(
-    distance: Float,
+    distance: String,
     modifier: Modifier
 ) {
     TextButton(
@@ -125,7 +172,7 @@ private fun Distance(
         contentPadding = PaddingValues(0.dp)
     ) {
         Text(
-            text = stringResource(id = R.string.stations_distance, distance),
+            text = distance,
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.primary.copy(alpha = alpha70),
         )
@@ -144,26 +191,39 @@ private fun Connectors(
     connectors: List<Int>,
     modifier: Modifier
 ) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(CONNECTORS_COUNT),
+    Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(45.dp),
-        userScrollEnabled = false
+            .height(50.dp)
     ) {
-        items(connectors.take(CONNECTORS_COUNT)) {  kw ->
-            Column {
-                Text(
-                    text = kw.toString(),
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.primary.copy(alpha = alpha80)
-                )
-                Text(
-                    text = stringResource(id = R.string.stations_kw),
-                    style = MaterialTheme.typography.body1,
-                    color = MaterialTheme.colors.onBackground.copy(alpha = alpha50)
-                )
+        if (connectors.isEmpty()) {
+            Text(
+                text = stringResource(id = R.string.stations_no_connectors),
+                modifier = Modifier.align(Alignment.CenterStart),
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onBackground.copy(alpha = alpha30)
+
+            )
+        } else {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(CONNECTORS_COUNT),
+                modifier = modifier.fillMaxSize()
+            ) {
+                items(connectors.take(CONNECTORS_COUNT)) {  kw ->
+                    Column {
+                        Text(
+                            text = kw.toString(),
+                            style = MaterialTheme.typography.h6,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colors.primary.copy(alpha = alpha80)
+                        )
+                        Text(
+                            text = stringResource(id = R.string.stations_kw),
+                            style = MaterialTheme.typography.body1,
+                            color = MaterialTheme.colors.onBackground.copy(alpha = alpha50)
+                        )
+                    }
+                }
             }
         }
     }
@@ -173,6 +233,7 @@ private fun Connectors(
 const val alpha80 = 0.8f
 const val alpha70 = 0.7f
 const val alpha50 = 0.5f
+const val alpha30 = 0.3f
 
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -182,20 +243,18 @@ private fun StationsViewPreview() = EvStationsAppTheme {
         UiStation(
             id = 100,
             name = "Charging Station innogy eMobility Solutions GmbH",
-            address = "Uferstraße 2-4 la ala lalala dhsd",
-            city = "Recklinghausen",
-            distanceKm = 2.87392f,
-            connectors = listOf(23, 27, 54, 108, 78, 43)
+            fullAddress = EvText.PlainText("Recklinghausen, Uferstraße 2-4 la ala lalala dhsd"),
+            distance = EvText.PlainText("2.3 km"),
+            connectors = listOf(23, 27, 54, 99, 78, 43)
         ),
         UiStation(
             id = 101,
             name = "Charging Station BEW Bergische Energie- und",
-            address = "Hochstrasse 7",
-            city = "Wipperfürth",
-            distanceKm = 5.3497f,
-            connectors = listOf(22, 44, 33)
+            fullAddress = EvText.PlainText("Wipperfürth, Hochstrasse 7"),
+            distance = EvText.PlainText("12 km"),
+            connectors = listOf()
         )
     )
 
-    ContentScreen(stations, modifier = Modifier.fillMaxSize())
+    ContentScreen(stations, {})
 }

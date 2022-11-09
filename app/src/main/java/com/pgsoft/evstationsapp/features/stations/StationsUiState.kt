@@ -4,6 +4,6 @@ import com.pgsoft.evstationsapp.data.common.EvText
 
 sealed class StationsUiState {
     object Loading: StationsUiState()
-    class Error(description: EvText): StationsUiState()
-    class Content(stations: List<UiStation>): StationsUiState()
+    class Error(val description: EvText): StationsUiState()
+    class Content(val stations: List<UiStation>): StationsUiState()
 }

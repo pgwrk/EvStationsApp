@@ -1,27 +1,102 @@
 [
   {
-    "id": 110489,
-    "latitude": 50.448272,
-    "longitude": 8.046851,
+    "id": 1117,
+    "latitude": 60.213960,
+    "longitude": 24.861123,
     "icon": 0,
-    "name": "Charging Station Süwag Grüne Energien und Wasser",
-    "city": "Hadamar",
-    "country": null,
-    "address": "Untermarkt 11a",
-    "provider": "Hubject",
+    "name": "Virta Demo 3",
+    "city": "Helsinki",
+    "country": "FI",
+    "address": "Energiakatu",
+    "provider": "Virta",
     "evses": [
       {
-        "id": 110489,
+        "id": 1117,
         "groupName": "",
         "connectors": [
           {
             "type": "Mennekes",
             "maxKw": 22
+          },
+          {
+            "type": "Mennekes",
+            "maxKw": 38
+          },
+          {
+            "type": "Mennekes",
+            "maxKw": 55
+          },
+          {
+            "type": "Mennekes",
+            "maxKw": 47
+          },
+          {
+            "type": "Mennekes",
+            "maxKw": 77
           }
         ]
       },
       {
-        "id": 110649,
+        "id": 9227,
+        "groupName": "",
+        "connectors": []
+      }
+    ],
+    "isRemoved": false,
+    "isPrivate": false
+  },
+  {
+    "id": 1122,
+    "latitude": 55.590411,
+    "longitude": 13.025678,
+    "icon": 0,
+    "name": "E.ON test station 2",
+    "city": "Sezimovo Ústí",
+    "country": "CZ",
+    "address": "Jantarová 3344/4",
+    "provider": "Virta",
+    "evses": [
+      {
+        "id": 1122,
+        "groupName": "",
+        "connectors": [
+          {
+            "type": "CHAdeMO",
+            "maxKw": 50
+          },
+          {
+            "type": "CCS",
+            "maxKw": 55
+          }
+        ]
+      },
+      {
+        "id": 3749,
+        "groupName": "",
+        "connectors": [
+          {
+            "type": "Mennekes",
+            "maxKw": 28
+          }
+        ]
+      }
+    ],
+    "isRemoved": false,
+    "isPrivate": false
+  },
+  {
+    "id": 1123,
+    "latitude": 55.598655,
+    "longitude": 13.043187,
+    "icon": 0,
+    "name": "E.ON test station 3",
+    "city": "",
+    "country": "SK",
+    "address": "",
+    "provider": "Virta",
+    "evses": [
+      {
+        "id": 1123,
         "groupName": "",
         "connectors": [
           {
@@ -35,18 +110,169 @@
     "isPrivate": false
   },
   {
-    "id": 110491,
-    "latitude": 51.497778,
-    "longitude": 7.3625,
+    "id": 1125,
+    "latitude": 77.661449,
+    "longitude": 17.187734,
+    "icon": 4,
+    "name": "jussi ocpp 1125",
+    "city": "",
+    "country": "FI",
+    "address": "Hämeentie 139 05450 Nukari Finland",
+    "provider": "Virta",
+    "evses": [
+      {
+        "id": 1125,
+        "groupName": "",
+        "connectors": [
+          {
+            "type": "Mennekes",
+            "maxKw": 28
+          }
+        ]
+      }
+    ],
+    "isRemoved": false,
+    "isPrivate": false
+  },
+  {
+    "id": 1128,
+    "latitude": 60.214874,
+    "longitude": 24.951153,
+    "icon": 4,
+    "name": "Gireve Sieil",
+    "city": "Helsinki",
+    "country": "FR",
+    "address": "",
+    "provider": "Virta",
+    "evses": [
+      {
+        "id": 1128,
+        "groupName": "",
+        "connectors": [
+          {
+            "type": "Schuko",
+            "maxKw": 30
+          },
+          {
+            "type": "Mennekes",
+            "maxKw": 40
+          },
+          {
+            "type": "Mennekes",
+            "maxKw": 50
+          }
+        ]
+      }
+    ],
+    "isRemoved": false,
+    "isPrivate": false
+  },
+  {
+    "id": 1129,
+    "latitude": 48.693749,
+    "longitude": 9.1846868,
+    "icon": 4,
+    "name": "ParkHere & Virta Demo 1",
+    "city": "",
+    "country": "FI",
+    "address": "",
+    "provider": "Virta",
+    "evses": [
+      {
+        "id": 1129,
+        "groupName": "",
+        "connectors": [
+          {
+            "type": "Mennekes",
+            "maxKw": 34
+          }
+        ]
+      }
+    ],
+    "isRemoved": false,
+    "isPrivate": false
+  },
+  {
+    "id": 1130,
+    "latitude": 48.6938,
+    "longitude": 9.1846868,
+    "icon": 4,
+    "name": "ParkHere & Virta Demo 2",
+    "city": "",
+    "country": "FI",
+    "address": "",
+    "provider": "Virta",
+    "evses": [
+      {
+        "id": 1130,
+        "groupName": "",
+        "connectors": [
+          {
+            "type": "Mennekes",
+            "maxKw": 0
+          }
+        ]
+      }
+    ],
+    "isRemoved": false,
+    "isPrivate": false
+  },
+  {
+    "id": 113086,
+    "latitude": 50.958149,
+    "longitude": 6.935279,
+    "icon": 0,
+    "name": "afsdfasdfsadfsdafsdfsdfsadf - chargecloud Zentrale",
+    "city": "Köln",
+    "country": null,
+    "address": "Methweg  6-8",
+    "provider": "Hubject",
+    "evses": [
+      {
+        "id": 113086,
+        "groupName": "",
+        "connectors": [
+          {
+            "type": "Mennekes",
+            "maxKw": 45
+          }
+        ]
+      },
+      {
+        "id": 113087,
+        "groupName": "",
+        "connectors": [
+          {
+            "type": "Mennekes",
+            "maxKw": 56
+          },
+          {
+            "type": "Mennekes",
+            "maxKw": 18
+          },
+          {
+            "type": "Mennekes",
+            "maxKw": 88
+          }
+        ]
+      }
+    ],
+    "isRemoved": false,
+    "isPrivate": false
+  },
+  {
+    "id": 113102,
+    "latitude": 51.512761,
+    "longitude": 7.468058,
     "icon": 0,
     "name": "Charging Station innogy eMobility Solutions GmbH",
     "city": "Dortmund",
     "country": null,
-    "address": "Kesselborn 52",
+    "address": "Kleppingstraße 21",
     "provider": "Hubject",
     "evses": [
       {
-        "id": 110491,
+        "id": 113102,
         "groupName": "",
         "connectors": [
           {
@@ -56,7 +282,7 @@
         ]
       },
       {
-        "id": 110554,
+        "id": 113103,
         "groupName": "",
         "connectors": [
           {
@@ -70,28 +296,18 @@
     "isPrivate": false
   },
   {
-    "id": 110493,
-    "latitude": 54.175513,
-    "longitude": 10.026462,
+    "id": 113104,
+    "latitude": 51.030012,
+    "longitude": 7.407968,
     "icon": 0,
-    "name": "Charging Station Versorgungsbetriebe Bordesholm Gm",
-    "city": "Bordesholm",
+    "name": "Charging Station BEW Bergische Energie- und",
+    "city": "Lindlar",
     "country": null,
-    "address": "Holstenstraße 23",
+    "address": "Schmiedeweg 10",
     "provider": "Hubject",
     "evses": [
       {
-        "id": 110493,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      },
-      {
-        "id": 300005904,
+        "id": 113104,
         "groupName": "",
         "connectors": [
           {
@@ -105,43 +321,18 @@
     "isPrivate": false
   },
   {
-    "id": 110496,
-    "latitude": 51.463537,
-    "longitude": 7.016784,
+    "id": 113106,
+    "latitude": 50.903783,
+    "longitude": 6.679267,
     "icon": 0,
     "name": "Charging Station innogy eMobility Solutions GmbH",
-    "city": "Essen",
+    "city": "Kerpen",
     "country": null,
-    "address": "Schützenbahn 65",
+    "address": "Hermann Löns Straße 9",
     "provider": "Hubject",
     "evses": [
       {
-        "id": 110496,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      }
-    ],
-    "isRemoved": false,
-    "isPrivate": false
-  },
-  {
-    "id": 110499,
-    "latitude": 51.533611,
-    "longitude": 7.624722,
-    "icon": 0,
-    "name": "Charging Station innogy eMobility Solutions GmbH",
-    "city": "Dortmund",
-    "country": null,
-    "address": "Altwickeder Hellweg 82",
-    "provider": "Hubject",
-    "evses": [
-      {
-        "id": 110499,
+        "id": 113106,
         "groupName": "",
         "connectors": [
           {
@@ -151,7 +342,7 @@
         ]
       },
       {
-        "id": 110149,
+        "id": 113107,
         "groupName": "",
         "connectors": [
           {
@@ -165,233 +356,53 @@
     "isPrivate": false
   },
   {
-    "id": 110500,
-    "latitude": 52.540594,
-    "longitude": 13.574313,
+    "id": 300006479,
+    "latitude": 47.766799,
+    "longitude": 16.226662,
     "icon": 0,
-    "name": "Charging Station innogy SE - eMob",
-    "city": "Berlin",
+    "name": "Wr. Neustadt, Golfclub Föhrenwald",
+    "city": "Lanzenkirchen",
     "country": null,
-    "address": "Hasenholzer Allee 2",
+    "address": "Kleinwolkersdorf 217",
     "provider": "Hubject",
     "evses": [
       {
-        "id": 110500,
+        "id": 300006479,
         "groupName": "",
         "connectors": [
           {
             "type": "Mennekes",
-            "maxKw": 22
+            "maxKw": 11
           }
         ]
       },
       {
-        "id": 110811,
+        "id": 300006480,
         "groupName": "",
         "connectors": [
           {
             "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      }
-    ],
-    "isRemoved": false,
-    "isPrivate": false
-  },
-  {
-    "id": 110502,
-    "latitude": 50.825278,
-    "longitude": 6.981389,
-    "icon": 0,
-    "name": "Charging Station innogy eMobility Solutions GmbH",
-    "city": "Wesseling",
-    "country": null,
-    "address": "Alfons-Müller-Platz 1",
-    "provider": "Hubject",
-    "evses": [
-      {
-        "id": 110502,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
+            "maxKw": 11
           }
         ]
       },
       {
-        "id": 110569,
+        "id": 300006481,
         "groupName": "",
         "connectors": [
           {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      }
-    ],
-    "isRemoved": false,
-    "isPrivate": false
-  },
-  {
-    "id": 110506,
-    "latitude": 49.60495,
-    "longitude": 6.416017,
-    "icon": 0,
-    "name": "Charging Station innogy eMobility Solutions GmbH",
-    "city": "Wincheringen",
-    "country": null,
-    "address": "Heesterter Straße 12",
-    "provider": "Hubject",
-    "evses": [
-      {
-        "id": 110506,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
+            "type": "Type F",
+            "maxKw": 3.7
           }
         ]
       },
       {
-        "id": 110838,
+        "id": 300006482,
         "groupName": "",
         "connectors": [
           {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      }
-    ],
-    "isRemoved": false,
-    "isPrivate": false
-  },
-  {
-    "id": 110507,
-    "latitude": 49.655533,
-    "longitude": 6.942617,
-    "icon": 0,
-    "name": "Charging Station innogy eMobility Solutions GmbH",
-    "city": "Hermeskeil",
-    "country": null,
-    "address": "Neuer Markt 2",
-    "provider": "Hubject",
-    "evses": [
-      {
-        "id": 110507,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      },
-      {
-        "id": 110592,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      }
-    ],
-    "isRemoved": false,
-    "isPrivate": false
-  },
-  {
-    "id": 110509,
-    "latitude": 50.123544,
-    "longitude": 8.65815,
-    "icon": 0,
-    "name": "Charging Station",
-    "city": "Frankfurt am Main",
-    "country": null,
-    "address": "Siesmayerstr.",
-    "provider": "Hubject",
-    "evses": [
-      {
-        "id": 110509,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      },
-      {
-        "id": 110761,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      }
-    ],
-    "isRemoved": false,
-    "isPrivate": false
-  },
-  {
-    "id": 110516,
-    "latitude": 50.903591,
-    "longitude": 7.399863,
-    "icon": 0,
-    "name": "Charging Station innogy eMobility Solutions GmbH",
-    "city": "Much",
-    "country": null,
-    "address": "Fritz-Wilhelm-Straße 1",
-    "provider": "Hubject",
-    "evses": [
-      {
-        "id": 110516,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      },
-      {
-        "id": 110728,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
-          }
-        ]
-      }
-    ],
-    "isRemoved": false,
-    "isPrivate": false
-  },
-  {
-    "id": 110519,
-    "latitude": 51.205039,
-    "longitude": 6.689075,
-    "icon": 0,
-    "name": "Charging Station innogy eMobility Solutions GmbH",
-    "city": "Neuss",
-    "country": null,
-    "address": "Collingstraße 2",
-    "provider": "Hubject",
-    "evses": [
-      {
-        "id": 110519,
-        "groupName": "",
-        "connectors": [
-          {
-            "type": "Mennekes",
-            "maxKw": 22
+            "type": "Type F",
+            "maxKw": 3.7
           }
         ]
       }

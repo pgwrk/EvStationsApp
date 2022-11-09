@@ -12,9 +12,13 @@
     <string name="login_common_error">Something went wrong. Please try latter.</string>
 
     <!-- Stations feature -->
-    <string name="stations_loading">Stations list loading …</string>
-    <string name="stations_retry">Retry</string>
+    <string name="stations_loading">Stations list is loading …</string>
+    <string name="stations_retry_button">RETRY</string>
     <string name="stations_kw">kW</string>
-    <string name="stations_distance">%.2f km</string>
+    <string name="stations_small_distance">%.1f km</string>
+    <string name="stations_big_distance">%d km</string>
     <string name="stations_address">%s, %s</string>
+    <string name="stations_no_address">No address provided</string>
+    <string name="stations_no_connectors">No connectors info provided</string>
+    <string name="stations_no_stations">No stations found</string>
 </resources>

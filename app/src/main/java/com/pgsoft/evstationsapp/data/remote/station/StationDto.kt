@@ -1,5 +1,6 @@
 package com.pgsoft.evstationsapp.data.remote.station
 
+import android.location.Location
 import com.google.gson.annotations.SerializedName
 import com.pgsoft.evstationsapp.data.model.Station
 
@@ -33,7 +34,7 @@ class ConnectorDto(
     @SerializedName("type")
     val type: String,
     @SerializedName("maxKw")
-    val maxKw: Int
+    val maxKw: Float
 )
 
 fun StationDto.toDomain(): Station {
@@ -41,13 +42,17 @@ fun StationDto.toDomain(): Station {
         .flatMap { evse -> evse.connectors.map { it.maxKw } }
         .filter { maxKw -> maxKw > 0 }
 
-    return Station(
+    val res = Station(
         id = id,
         name,
         address = address,
         city = city,
-        latitude = latitude,
-        longitude = longitude,
-        connectors = connectors
+        location = Location("").apply {
+            latitude = this@toDomain.latitude
+            longitude = this@toDomain.longitude
+        },
+        connectors = connectors.map { it.toInt() }
     )
+
+    return res
 }
