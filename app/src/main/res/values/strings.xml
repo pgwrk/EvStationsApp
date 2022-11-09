@@ -13,4 +13,5 @@
 
     <!-- Stations feature -->
     <string name="stations_loading">Stations list loading …</string>
+    <string name="stations_retry">Retry</string>
 </resources>
