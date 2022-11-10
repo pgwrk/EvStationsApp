@@ -19,9 +19,9 @@ import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 @Composable
 fun EvAppBar(
     @StringRes titleId: Int,
-    @DrawableRes iconId: Int,
-    onIconTapped: () -> Unit,
     modifier: Modifier = Modifier,
+    @DrawableRes iconId: Int = 0,
+    onIconTapped: () -> Unit = {},
     showBackIcon: Boolean = false,
     onBackIconTapped: () -> Unit = {}
 ) {
@@ -60,15 +60,17 @@ fun EvAppBar(
                 color = MaterialTheme.colors.onBackground
             )
 
-            IconButton(
-                onClick = onIconTapped,
-                modifier = Modifier.align(Alignment.CenterVertically),
-            ) {
-                Icon(
-                    painter = painterResource(iconId),
-                    tint = MaterialTheme.colors.primary,
-                    contentDescription = null
-                )
+            if (iconId != 0) {
+                IconButton(
+                    onClick = onIconTapped,
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                ) {
+                    Icon(
+                        painter = painterResource(iconId),
+                        tint = MaterialTheme.colors.primary,
+                        contentDescription = null
+                    )
+                }
             }
         }
 
