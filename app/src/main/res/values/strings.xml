@@ -18,6 +18,7 @@
     <string name="stations_small_distance">%.1f km</string>
     <string name="stations_big_distance">%d km</string>
     <string name="stations_address">%s, %s</string>
+    <string name="stations_no_name">No station name provided</string>
     <string name="stations_no_address">No address provided</string>
     <string name="stations_no_connectors">No connectors info provided</string>
     <string name="stations_no_stations">No stations found</string>

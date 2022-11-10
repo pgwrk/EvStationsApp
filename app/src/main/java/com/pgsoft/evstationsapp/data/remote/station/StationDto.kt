@@ -8,15 +8,15 @@ class StationDto(
     @SerializedName("id")
     val id: Long,
     @SerializedName("latitude")
-    val latitude: Double,
+    val latitude: Double?,
     @SerializedName("longitude")
-    val longitude: Double,
+    val longitude: Double?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("city")
-    val city: String,
+    val city: String?,
     @SerializedName("address")
-    val address: String,
+    val address: String?,
     @SerializedName("evses")
     val evses: List<EvseDto>
 )
@@ -44,12 +44,12 @@ fun StationDto.toDomain(): Station {
 
     val res = Station(
         id = id,
-        name,
-        address = address,
-        city = city,
+        name.orEmpty(),
+        address = address.orEmpty(),
+        city = city.orEmpty(),
         location = Location("").apply {
-            latitude = this@toDomain.latitude
-            longitude = this@toDomain.longitude
+            latitude = this@toDomain.latitude ?: 0.0
+            longitude = this@toDomain.longitude ?: 0.0
         },
         connectors = connectors.map { it.toInt() }
     )

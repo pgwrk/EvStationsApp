@@ -7,7 +7,7 @@ import com.pgsoft.evstationsapp.data.model.Station
 
 class UiStation(
     val id: Long,
-    val name: String,
+    val name: EvText,
     val fullAddress: EvText,
     val distance: EvText?,
     val connectors: List<Int>?
@@ -24,7 +24,7 @@ class StationToUiStationMapper {
 
         UiStation(
             id = id,
-            name = name,
+            name = if (name.isBlank()) EvText.ResText(R.string.stations_no_name) else EvText.PlainText(name),
             fullAddress = getFullAddress(address, city),
             distance = if (showDistance) getDistanceAsText(distanceInKm) else null,
             connectors = if (showConnectors) connectors else null

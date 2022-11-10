@@ -111,7 +111,7 @@ private fun StationView(station: UiStation) {
             val (name, address, distance, connectors) = createRefs()
 
             Text(
-                text = station.name,
+                text = station.name.resolve(LocalContext.current),
                 modifier = Modifier.constrainAs(name) {
                     start.linkTo(parent.start)
                     end.linkTo(distance.start, margin = 8.dp)
@@ -242,19 +242,19 @@ private fun StationsViewPreview() = EvStationsAppTheme {
     val stations = listOf(
         UiStation(
             id = 100,
-            name = "Charging Station innogy eMobility Solutions GmbH",
+            name = EvText.PlainText("Charging Station innogy eMobility Solutions GmbH"),
             fullAddress = EvText.PlainText("Recklinghausen, Uferstraße 2-4 la ala lalala dhsd"),
             distance = EvText.PlainText("2.3 km"),
             connectors = listOf(23, 27, 54, 99, 78, 43)
         ),
         UiStation(
             id = 101,
-            name = "Charging Station BEW Bergische Energie- und",
+            name = EvText.PlainText("Charging Station BEW Bergische Energie- und"),
             fullAddress = EvText.PlainText("Wipperfürth, Hochstrasse 7"),
             distance = EvText.PlainText("12 km"),
             connectors = listOf()
         )
     )
 
-    ContentScreen(stations, {})
+    ContentScreen(stations) {}
 }
