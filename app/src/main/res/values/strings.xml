@@ -26,5 +26,7 @@
 
     <!-- Settings screen -->
     <string name="settings_title">Settings</string>
+    <string name="settings_show_distance">Show distance</string>
+    <string name="settings_show_connectors">Show connectors</string>
 
 </resources>
