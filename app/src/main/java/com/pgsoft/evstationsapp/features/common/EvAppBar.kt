@@ -27,12 +27,13 @@ fun EvAppBar(
 ) {
     Column(
         modifier = modifier
-            .fillMaxWidth()
-            .height(56.dp),
+            .fillMaxWidth(),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            horizontalArrangement = if (iconId != 0) Arrangement.SpaceBetween else Arrangement.Start
         ) {
             if (showBackIcon) {
                 IconButton(
