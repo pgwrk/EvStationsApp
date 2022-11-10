@@ -22,17 +22,11 @@ class StationDto(
 )
 
 class EvseDto(
-    @SerializedName("id")
-    val id: Long,
-    @SerializedName("groupName")
-    val groupName: String,
     @SerializedName("connectors")
     val connectors: List<ConnectorDto>
 )
 
 class ConnectorDto(
-    @SerializedName("type")
-    val type: String,
     @SerializedName("maxKw")
     val maxKw: Float
 )
