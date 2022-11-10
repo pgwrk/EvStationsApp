@@ -1,5 +1,6 @@
 package com.pgsoft.evstationsapp.features.stations.settings
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Switch
@@ -42,7 +43,11 @@ fun SettingsScreen(
     onShowDistanceTaped: (Boolean) -> Unit,
     onShowConnectorsTapped: (Boolean) -> Unit,
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.background)
+    ) {
         EvAppBar(
             titleId = R.string.settings_title,
             showBackIcon = true,
