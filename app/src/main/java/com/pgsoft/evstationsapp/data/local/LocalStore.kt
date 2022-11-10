@@ -6,9 +6,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
-enum class OptionName(val value: String) {
+enum class SettingName(val value: String) {
     ShowDistance("ShowDistance"),
-    ShowConnectors("ShowConnectors")
+    ShowConnectors("ShowConnectors"),
+    Token("AppToken")
 }
 
 @Singleton
@@ -18,18 +19,17 @@ class LocalStore @Inject constructor(@ApplicationContext context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences(STORE_NAME, Context.MODE_PRIVATE)
 
     fun saveToken(token: String) {
-        prefs.edit()?.putString(TOKEN, token)?.apply()
+        prefs.edit()?.putString(SettingName.Token.value, token)?.apply()
     }
 
-    fun getToken(): String? = prefs.getString(TOKEN, null)
+    fun getToken(): String? = prefs.getString(SettingName.Token.value, null)
 
-    fun saveOption(optionName: OptionName, value: Boolean) {
-        prefs.edit()?.putBoolean(optionName.value, value)?.apply()
+    fun saveSetting(settingName: SettingName, value: Boolean) {
+        prefs.edit()?.putBoolean(settingName.value, value)?.apply()
     }
 
-    fun getOption(optionName: OptionName, value: Boolean, defaultValue: Boolean) =
-        prefs.getBoolean(optionName.value, defaultValue)
+    fun getSetting(settingName: SettingName, defaultValue: Boolean) =
+        prefs.getBoolean(settingName.value, defaultValue)
 }
 
 private const val STORE_NAME = "app data"
-private const val TOKEN = "app_token"
