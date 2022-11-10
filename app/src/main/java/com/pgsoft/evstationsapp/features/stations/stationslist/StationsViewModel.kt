@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pgsoft.evstationsapp.R
 import com.pgsoft.evstationsapp.data.datasources.location.LocationDataSource
+import com.pgsoft.evstationsapp.data.model.Station
+import com.pgsoft.evstationsapp.data.repository.SettingsRepository
 import com.pgsoft.evstationsapp.data.repository.StationsRepository
 import com.pgsoft.evstationsapp.extension.asEvTextOnError
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,18 +17,25 @@ import javax.inject.Inject
 @HiltViewModel
 class StationsViewModel @Inject constructor(
     private val locationDataSource: LocationDataSource,
-    private val stationsRepository: StationsRepository
+    private val stationsRepository: StationsRepository,
+    settingsRepository: SettingsRepository
 ): ViewModel() {
 
-    // must be moved to OptionsRepository when implemented
-    private val showDistanceOption: Boolean = true
-    private val showConnectorsOption: Boolean = true
+    private var stations: List<Station> = listOf()
+    private val settingsState = settingsRepository.stationsSettingsFlow
 
     private val _uiState: MutableStateFlow<StationsUiState> = MutableStateFlow(StationsUiState.Loading)
     val uiState : StateFlow<StationsUiState> = _uiState
 
     init {
         load()
+        viewModelScope.launch {
+           settingsState.collect()  {
+                if (uiState.value is StationsUiState.Content) {
+                    combineStationsWithSetting()
+                }
+            }
+        }
     }
 
     fun load() {
@@ -36,22 +45,32 @@ class StationsViewModel @Inject constructor(
             if (response.isFailure) {
                 setState(StationsUiState.Error(description = response.asEvTextOnError(R.string.login_common_error)))
             } else {
-                val stations = response.getOrNull()?.let { stations ->
-                    val userLocation = locationDataSource.getLocation()
-                    val mapper = StationToUiStationMapper()
-
-                    stations
-                        .sortedBy {
-                            userLocation.distanceTo(it.location)
-                        }
-                        .map { mapper.map(it, userLocation, showDistanceOption, showConnectorsOption) }
+                response.getOrNull()?.let { stations ->
+                    this@StationsViewModel.stations = stations
+                    combineStationsWithSetting()
                 } ?: run {
-                    listOf()
+                    setState(StationsUiState.Content(stations = listOf()))
                 }
-
-                setState(StationsUiState.Content(stations = stations))
             }
         }
+    }
+
+    private fun combineStationsWithSetting() {
+        val userLocation = locationDataSource.getLocation()
+        val mapper = StationToUiStationMapper()
+
+        val uiStations = stations
+            .sortedBy { station -> userLocation.distanceTo(station.location) }
+            .map { station ->
+                mapper.map(
+                    station,
+                    userLocation,
+                    settingsState.value.showDistance,
+                    settingsState.value.showConnectors
+                )
+            }
+
+        setState(StationsUiState.Content(stations = uiStations))
     }
 
     private fun setState(newState: StationsUiState) {

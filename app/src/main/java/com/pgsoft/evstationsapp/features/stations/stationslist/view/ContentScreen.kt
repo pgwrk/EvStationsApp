@@ -129,7 +129,7 @@ private fun StationView(station: UiStation) {
                 modifier = Modifier.constrainAs(address) {
                     top.linkTo(name.bottom)
                     start.linkTo(name.start)
-                    end.linkTo(name.end)
+                    end.linkTo(distance.start, margin = 16.dp)
                     width = Dimension.fillToConstraints
                 },
                 style = MaterialTheme.typography.body1,
