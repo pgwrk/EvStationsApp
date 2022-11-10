@@ -31,6 +31,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pgsoft.evstationsapp.R
+import com.pgsoft.evstationsapp.features.common.EvAppBar
 import com.pgsoft.evstationsapp.features.login.evedittext.EvEditText
 import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 
@@ -84,9 +85,11 @@ fun LoginScreen(
     ) {
         val (header, image, loginModule, loginButton, error) = createRefs()
 
-        Header(
+        EvAppBar(
+            titleId = R.string.login_title,
+            iconId = R.drawable.ic_x,
             modifier = Modifier.constrainAs(header) {},
-            onClose = onClose
+            onIconTapped = onClose
         )
 
         Image(
@@ -136,48 +139,6 @@ fun LoginScreen(
                     height = Dimension.value(56.dp)
                 }
         )
-    }
-}
-
-@Composable
-private fun Header(
-    onClose: () -> Unit,
-    modifier: Modifier,
-) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(start = 16.dp),
-                text = stringResource(id = R.string.login_title),
-                style = MaterialTheme.typography.h5,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colors.onBackground
-            )
-
-            IconButton(onClick = onClose) {
-                Icon(
-                    modifier = Modifier
-                        .padding(top = 8.dp)
-                        .align(Alignment.CenterVertically),
-                    painter = painterResource(id = R.drawable.ic_x),
-                    tint = MaterialTheme.colors.primary,
-                    contentDescription = null
-                )
-            }
-        }
-
-        Divider(modifier = Modifier.fillMaxWidth())
     }
 }
 
