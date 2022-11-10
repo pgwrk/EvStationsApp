@@ -3,6 +3,7 @@ package com.pgsoft.evstationsapp.di
 import com.google.gson.GsonBuilder
 import com.pgsoft.evstationsapp.BuildConfig
 import com.pgsoft.evstationsapp.data.remote.auth.AuthApi
+import com.pgsoft.evstationsapp.data.remote.interceptors.AuthInterceptor
 import com.pgsoft.evstationsapp.data.remote.interceptors.StationApiMockInterceptor
 import com.pgsoft.evstationsapp.data.remote.station.StationsApi
 import dagger.Module
@@ -21,21 +22,24 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
-        val client = OkHttpClient
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
+         Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_API_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient =
+        OkHttpClient
             .Builder()
+            .addInterceptor(StationApiMockInterceptor())
+            .addInterceptor(authInterceptor)
             .addInterceptor(
                 HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) }
             )
-            .addInterceptor(StationApiMockInterceptor())
             .build()
-
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_API_URL)
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build()
-    }
 
     @Provides
     @Singleton

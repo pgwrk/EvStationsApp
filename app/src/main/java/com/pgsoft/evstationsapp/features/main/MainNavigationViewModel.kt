@@ -12,6 +12,6 @@ class MainNavigationViewModel @Inject constructor(
 
     fun hasToken(): Boolean {
         val token = authRepository.getToken()
-        return token != null && token.isNotBlank()
+        return !token.isNullOrBlank()
     }
 }
