@@ -1,4 +1,4 @@
-package com.pgsoft.evstationsapp.features.stations
+package com.pgsoft.evstationsapp.features.stations.stationslist
 
 import com.pgsoft.evstationsapp.data.common.EvText
 

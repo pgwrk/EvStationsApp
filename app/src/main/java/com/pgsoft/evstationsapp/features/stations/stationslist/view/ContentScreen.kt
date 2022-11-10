@@ -1,4 +1,4 @@
-package com.pgsoft.evstationsapp.features.stations.view
+package com.pgsoft.evstationsapp.features.stations.stationslist.view
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -25,7 +25,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.pgsoft.evstationsapp.R
 import com.pgsoft.evstationsapp.data.common.EvText
-import com.pgsoft.evstationsapp.features.stations.UiStation
+import com.pgsoft.evstationsapp.features.stations.stationslist.UiStation
 import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 
 @Composable
@@ -209,7 +209,7 @@ private fun Connectors(
                 columns = GridCells.Fixed(CONNECTORS_COUNT),
                 modifier = modifier.fillMaxSize()
             ) {
-                items(connectors.take(CONNECTORS_COUNT)) {  kw ->
+                items(connectors.take(CONNECTORS_COUNT)) { kw ->
                     Column {
                         Text(
                             text = kw.toString(),

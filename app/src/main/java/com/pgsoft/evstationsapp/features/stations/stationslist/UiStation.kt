@@ -1,4 +1,4 @@
-package com.pgsoft.evstationsapp.features.stations
+package com.pgsoft.evstationsapp.features.stations.stationslist
 
 import android.location.Location
 import com.pgsoft.evstationsapp.R

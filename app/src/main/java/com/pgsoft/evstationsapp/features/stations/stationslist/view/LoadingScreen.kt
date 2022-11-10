@@ -1,4 +1,4 @@
-package com.pgsoft.evstationsapp.features.stations.view
+package com.pgsoft.evstationsapp.features.stations.stationslist.view
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background

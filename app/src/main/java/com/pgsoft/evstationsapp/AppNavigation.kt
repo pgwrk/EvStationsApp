@@ -10,8 +10,8 @@ import com.pgsoft.evstationsapp.features.login.loginScreen
 import com.pgsoft.evstationsapp.features.login.navigateToLogin
 import com.pgsoft.evstationsapp.features.main.mainRoute
 import com.pgsoft.evstationsapp.features.main.mainScreen
-import com.pgsoft.evstationsapp.features.stations.navigateToStations
-import com.pgsoft.evstationsapp.features.stations.stationsScreen
+import com.pgsoft.evstationsapp.features.stations.stationslist.navigateToStations
+import com.pgsoft.evstationsapp.features.stations.stationslist.stationsScreen
 
 @Composable
 fun AppNavigation() {

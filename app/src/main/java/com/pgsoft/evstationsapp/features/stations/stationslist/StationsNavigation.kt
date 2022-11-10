@@ -1,4 +1,4 @@
-package com.pgsoft.evstationsapp.features.stations
+package com.pgsoft.evstationsapp.features.stations.stationslist
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

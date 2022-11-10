@@ -1,4 +1,4 @@
-package com.pgsoft.evstationsapp.features.stations
+package com.pgsoft.evstationsapp.features.stations.stationslist
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -14,9 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pgsoft.evstationsapp.R
 import com.pgsoft.evstationsapp.features.common.EvAppBar
-import com.pgsoft.evstationsapp.features.stations.view.ContentScreen
-import com.pgsoft.evstationsapp.features.stations.view.ErrorScreen
-import com.pgsoft.evstationsapp.features.stations.view.LoadingScreen
+import com.pgsoft.evstationsapp.features.stations.stationslist.view.ContentScreen
+import com.pgsoft.evstationsapp.features.stations.stationslist.view.ErrorScreen
+import com.pgsoft.evstationsapp.features.stations.stationslist.view.LoadingScreen
 import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 
 @Composable
