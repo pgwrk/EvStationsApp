@@ -2,7 +2,7 @@ package com.pgsoft.evstationsapp.features.stations
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -12,13 +12,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.pgsoft.evstationsapp.R
+import com.pgsoft.evstationsapp.features.common.EvAppBar
 import com.pgsoft.evstationsapp.features.stations.view.ContentScreen
 import com.pgsoft.evstationsapp.features.stations.view.ErrorScreen
 import com.pgsoft.evstationsapp.features.stations.view.LoadingScreen
 import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 
 @Composable
-fun StationsRoute(viewModel: StationsViewModel = hiltViewModel()) {
+fun StationsRoute(
+    viewModel: StationsViewModel = hiltViewModel()
+) {
 
     val uiState by viewModel.uiState.collectAsState()
 
@@ -33,11 +37,17 @@ fun StationsScreen(
     uiState: StationsUiState,
     onRetry: () -> Unit
 ) {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colors.background)
     ) {
+        EvAppBar(
+            titleId = R.string.stations_title,
+            iconId = R.drawable.ic_settings,
+            onIconTapped = { /*TODO*/ }
+        )
+
         when (uiState) {
             StationsUiState.Loading -> LoadingScreen()
             is StationsUiState.Error ->

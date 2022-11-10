@@ -12,6 +12,7 @@
     <string name="login_common_error">Something went wrong. Please try latter.</string>
 
     <!-- Stations feature -->
+    <string name="stations_title">Stations list</string>
     <string name="stations_loading">Stations list is loading …</string>
     <string name="stations_retry_button">RETRY</string>
     <string name="stations_kw">kW</string>
