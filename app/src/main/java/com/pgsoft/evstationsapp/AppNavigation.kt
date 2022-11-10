@@ -10,8 +10,9 @@ import com.pgsoft.evstationsapp.features.login.loginScreen
 import com.pgsoft.evstationsapp.features.login.navigateToLogin
 import com.pgsoft.evstationsapp.features.main.mainRoute
 import com.pgsoft.evstationsapp.features.main.mainScreen
-import com.pgsoft.evstationsapp.features.stations.stationslist.navigateToStations
-import com.pgsoft.evstationsapp.features.stations.stationslist.stationsScreen
+import com.pgsoft.evstationsapp.features.stations.navigateToSettings
+import com.pgsoft.evstationsapp.features.stations.navigateToStations
+import com.pgsoft.evstationsapp.features.stations.stationsFeature
 
 @Composable
 fun AppNavigation() {
@@ -36,7 +37,14 @@ fun AppNavigation() {
             }
         )
 
-        stationsScreen()
+        stationsFeature(
+            onShowSettings = {
+                navController.navigateToSettings()
+            },
+            onCloseSettings = {
+                navController.popBackStack()
+            }
+        )
     }
 }
 

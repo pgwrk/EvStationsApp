@@ -21,21 +21,24 @@ import com.pgsoft.evstationsapp.ui.theme.EvStationsAppTheme
 
 @Composable
 fun StationsRoute(
-    viewModel: StationsViewModel = hiltViewModel()
+    viewModel: StationsViewModel = hiltViewModel(),
+    onSettings: () -> Unit
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
 
     StationsScreen(
         uiState = uiState,
-        onRetry = { viewModel.load() }
+        onRetry = { viewModel.load() },
+        onSettings = onSettings
     )
 }
 
 @Composable
 fun StationsScreen(
     uiState: StationsUiState,
-    onRetry: () -> Unit
+    onRetry: () -> Unit,
+    onSettings: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -45,7 +48,7 @@ fun StationsScreen(
         EvAppBar(
             titleId = R.string.stations_title,
             iconId = R.drawable.ic_settings,
-            onIconTapped = { /*TODO*/ }
+            onIconTapped = onSettings
         )
 
         when (uiState) {

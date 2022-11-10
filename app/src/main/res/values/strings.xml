@@ -23,4 +23,8 @@
     <string name="stations_no_address">No address provided</string>
     <string name="stations_no_connectors">No connectors info provided</string>
     <string name="stations_no_stations">No stations found</string>
+
+    <!-- Settings screen -->
+    <string name="settings_title">Settings</string>
+
 </resources>
