@@ -6,6 +6,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
+enum class OptionName(val value: String) {
+    ShowDistance("ShowDistance"),
+    ShowConnectors("ShowConnectors")
+}
+
 @Singleton
 class LocalStore @Inject constructor(@ApplicationContext context: Context) {
 
@@ -17,6 +22,13 @@ class LocalStore @Inject constructor(@ApplicationContext context: Context) {
     }
 
     fun getToken(): String? = prefs.getString(TOKEN, null)
+
+    fun saveOption(optionName: OptionName, value: Boolean) {
+        prefs.edit()?.putBoolean(optionName.value, value)?.apply()
+    }
+
+    fun getOption(optionName: OptionName, value: Boolean, defaultValue: Boolean) =
+        prefs.getBoolean(optionName.value, defaultValue)
 }
 
 private const val STORE_NAME = "app data"
